@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limkokwing University Course Recommender</title>
+    <style>
+        body {
+            background-image: url('Limkokwing_University_resized_corporate_logo.jpg'); /* Replace 'background.jpg' with your image */
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            color: #be9595;
+        }
+
+        label {
+            display: block;
+            font-size: 18px;
+            margin-top: 10px;
+            color: #555;
+        }
+
+        input[type="text"] {
+            width: 90%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            display: block;
+            width: 98%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .program-details {
+            /*background-color: #fff;*/
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(43, 223, 43, 0.2);
+        }
+        /* Center the div horizontally and vertically */
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* This ensures it takes up the full viewport height */
+            background-image: url('Limkokwing_University_resized_corporate_logo.jpg');
+            background-size: cover;
+        }
+
+        /* Add some styling to the centered div */
+        .centered-div {
+            width: 300px;
+            height: 600px;
+            background-color: rgba(255,255,255,0.8);
+            text-align: center;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .copyright {
+            font-family: Algerian, sans-serif;
+            text-align: center;
+            font-size: 16px;
+            color: #fff; /* White text color for visibility on the background image */
+            background-color: rgba(0, 0, 0, 0.7); /* Background color with some opacity for readability */
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+   <div class="center-container">
+        <div class="centered-div">
+             
+        <form id="gradeForm">
+            <label for="mathGrade">Math Grade:</label>
+            <input type="text" id="mathGrade" name="mathGrade" required><br>
+
+            <label for="scienceGrade">Science Grade:</label>
+            <input type="text" id="scienceGrade" name="scienceGrade" required><br>
+
+            <label for="businessGrade">Business Studies Grade:</label>
+            <input type="text" id="businessGrade" name="businessGrade" required><br>
+
+            <label for="englishGrade">English Grade:</label>
+            <input type="text" id="englishGrade" name="englishGrade" required><br>
+
+            <button type="button" onclick="recommendCourse()">Recommend Program</button>
+        </form>
+
+        <div id="recommendation">
+            <!-- Recommendation details will be displayed here -->
+        </div>
+        </div>
+   </div>
+
+    <script>
+        function recommendCourse() {
+        // Get grade inputs
+        const mathGrade = document.getElementById("mathGrade").value.toUpperCase(); // Convert to uppercase
+        const scienceGrade = document.getElementById("scienceGrade").value.toUpperCase(); // Convert to uppercase
+        const businessGrade = document.getElementById("businessGrade").value.toUpperCase(); // Convert to uppercase
+        const englishGrade = document.getElementById("englishGrade").value.toUpperCase(); // Convert to uppercase
+
+        let recommendationText = "";
+        let programName = "";
+        let programImage = "";
+        let programDetails = "";
+
+        if (mathGrade === "A*" || mathGrade === "A") {
+            programName = "Information Technology";
+            programImage = "download.jfif";
+            programDetails = "This program focuses on IT skills and knowledge.";
+        } else if (businessGrade === "B" && englishGrade === "B") {
+            programName = "Business Management";
+            programImage = "download (1).jfif";
+            programDetails = "This program focuses on business and management.";
+        } else if (englishGrade === "B") {
+            programName = "Communication Studies";
+            programImage = "download (2).jfif";
+            programDetails = "This program focuses on communication skills.";
+        } else {
+            recommendationText = "Sorry, you do not qualify for any programs.";
+        }
+
+        if (programName) {
+            recommendationText = `<h2>Recommended Program: ${programName}</h2>`;
+            recommendationText += `<img src="${programImage}" alt="${programName}" width="200"><br>`;
+            recommendationText += `<p>${programDetails}</p>`;
+        }
+
+        document.getElementById("recommendation").innerHTML = recommendationText;
+    }
+
+    </script>
+    <footer>
+        <div class="copyright">
+            &copy; 2023 Limkokwing University Course Recommender
+        </div>
+    </footer>
+</body>
+</html>
